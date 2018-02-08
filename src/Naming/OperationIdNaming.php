@@ -9,6 +9,6 @@ class OperationIdNaming implements OperationNamingInterface
 {
     public function generateFunctionName(Operation $operation)
     {
-        return Inflector::camelize($operation->getOperation()->getOperationId());
+        return Inflector::camelize(trim(preg_replace('/[^a-z0-9 ]+/iu', '_', (string) $operation->getOperation()->getOperationId())));
     }
 }
